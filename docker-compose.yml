@@ -1,0 +1,47 @@
+version: "3.2"
+services:
+  mysql:
+    image: mysql:8.0
+    volumes: 
+      - ./data/mysql:/var/lib/mysql
+      - ./Dockerfiles/mysql/init:/docker-endpoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=root 
+    container_name: 
+      "${PROJECT_NAME}-db"
+    ports: 
+      - "3307:3306"
+  laravel-nginx:
+    build: 
+      context: .
+      dockerfile: ./Dockerfiles/nginx/Dockerfile
+      args: 
+        - LARAVEL_PROJECT_ROOT=$LARAVEL_PROJECT_ROOT
+    volumes: 
+      - ./Dockerfiles/nginx/conf.d:/etc/nginx/conf.d
+      - .:/var/www/
+    ports: 
+      - "8010:80"
+    links: 
+      - laravel-fpm
+    depends_on: 
+      - laravel-fpm
+    container_name: 
+      "${PROJECT_NAME}-nginx"
+    image: laravel-nginx
+    environment:
+      - LARAVEL_PROJECT_ROOT
+  laravel-fpm:
+    build: 
+      context: .
+      dockerfile: ./Dockerfiles/laravel-fpm/Dockerfile
+      args: 
+        - LARAVEL_PROJECT_ROOT=$LARAVEL_PROJECT_ROOT
+    volumes:
+      - .:/var/www/
+    links: 
+      - mysql
+    container_name: "${PROJECT_NAME}-fpm"
+    image: laravel-fpm
+    environment:
+      - LARAVEL_PROJECT_ROOT
