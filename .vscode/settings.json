@@ -1,0 +1,8 @@
+{
+  "php.suggest.basic": false,
+  "php.validate.enable": false,
+  "phpcs.executablePath": "laravel/vendor/squizlabs/php_codesniffer/bin/phpcs",
+  "php-cs-fixer.autoFixBySemicolon": true,
+  "php-cs-fixer.formatHtml": true,
+  "php-cs-fixer.onsave": true,
+}
