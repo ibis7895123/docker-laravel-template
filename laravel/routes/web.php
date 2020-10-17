@@ -23,7 +23,3 @@ Route::get('tests/test', 'TestController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
