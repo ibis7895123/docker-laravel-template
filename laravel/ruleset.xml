@@ -4,6 +4,7 @@
     <!-- <arg name="tab-width" value="2"/> -->
     <rule ref="PSR2">
         <exclude name="Generic.WhiteSpace.ScopeIndent" />
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />
         <!-- <properties>
             <property name="indent" value="2" />
         </properties> -->
