@@ -70,7 +70,7 @@ return PhpCsFixer\Config::create()
         'no_alias_functions' => true,
         'no_blank_lines_after_class_opening' => true,
         'no_blank_lines_after_phpdoc' => true,
-        'no_closing_tag' => true, 
+        'no_closing_tag' => true,
         'no_empty_comment' => true,
         'no_empty_phpdoc' => true,
         'no_empty_statement' => true,
