@@ -37,6 +37,9 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN composer self-update
 RUN composer global require hirak/prestissimo
+RUN composer global require squizlabs/php_codesniffer
+RUN composer global require friendsofphp/php-cs-fixer
+RUN composer global require barryvdh/laravel-debugbar
 COPY ./Dockerfiles/laravel-fpm/php.ini /usr/local/etc/php/conf.d/php.ini
 COPY . /var/www/
 
