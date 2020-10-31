@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,19 @@ Route::get('/', function () {
 });
 
 Route::get('tests/test', 'TestController@index');
+
+Route::group(
+    ['prefix'=>'contact', 'middleware'=>'auth'],
+    function () {
+        Route::get('index', 'ContactFormController@index')->name('contact.index');
+        Route::get('create', 'ContactFormController@create')->name('contact.create');
+        Route::post('store', 'ContactFormController@store')->name('contact.store');
+        Route::get('show/{id}', 'ContactFormController@show')->name('contact.show');
+        Route::get('edit/{id}', 'ContactFormController@edit')->name('contact.edit');
+        Route::post('update/{id}', 'ContactFormController@update')->name('contact.update');
+        Route::post('destroy/{id}', 'ContactFormController@destroy')->name('contact.destroy');
+    }
+);
 
 Auth::routes();
 
